@@ -99,13 +99,16 @@ namespace AdventOfCode
             // To get to the device, there is only one way to do this, you need to go through
             // the largest number. This is going to be true for all permutations.
             //
-            // Then, consider the second last number, how many paths take you to the highest
-            // adapter (considering the jolt difference. Rinse and repeat until you go through
+            // Then, consider the second last number. How many paths take you to the highest
+            // adapter (considering the jolt difference)? Rinse and repeat until you go through
             // all the adapters and outlet.
+            
+            // Connections look like : outlet - adapter - adapter - [... adapter ...] - device
                  
-            // EG:
+            // Example
             // index         0   1   2   3   4   5    6    7    8
             // adapterList:  1   2   3   6   7   9   10   12   14
+
             // countList  :                                     1 <- only one way for 14 to get to the device [17]
             // countList  :                                1    1 <- only one way for 12 to get to the next number [14]
             // countList  :                           1    1    1 <- only one way for 10 to get to the next number [12]
@@ -119,13 +122,11 @@ namespace AdventOfCode
             // Once we have the count list complete, consider the outlet. In this example, the outlet is 0 and can handle devices 
             // with a Jolt of [1,2,3], add the 3 counts together: Solution for this example would be 10 + 5 + 5 = 20.
             
-             // NOTE: By this time, the array of adapters is already sorted - done as part of the initialization.
                  
-                 
-            // countList is used to hold the number of permutations from a specific
-            // adapter to the end.
+            // countList is used to hold the number of permutations from a specific adapter to the device.
             UInt64[] countList = new UInt64[adapterList.Length];
 
+            // NOTE: The array of adapters is already sorted - done as part of the initialization.
             // Start at the end and count how many ways to get to the device
             for(int index1 = adapterList.Length; index1 > 0; index1--)
             {
