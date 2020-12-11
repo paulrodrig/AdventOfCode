@@ -140,6 +140,7 @@ namespace AdventOfCode
                     // For this specific adapter, check which adapters can be connected 
                     for(int index2 = index1; index2 < countList.Length; index2++)
                     {
+                        // Check to see the the next adapter in the list can be connected
                         if(adapterList[index2] - adapterList[index1-1] > aJoltDifference)
                         {
                             // Since the list is sorted, once the JoltDifference is exceeded, we don't have to
